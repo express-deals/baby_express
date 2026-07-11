@@ -162,6 +162,7 @@
         href="https://chat.whatsapp.com/EACdDu5zfDoI7pvn8F5fBN"
         target="_blank"
         rel="noopener noreferrer"
+        onclick="fbq('track', 'Lead');"
         class="cta-pulse inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 active:scale-95 text-white font-black text-xl md:text-2xl px-10 py-5 rounded-full transition-transform duration-150 select-none"
         aria-label="להצטרפות לקהילת הוואטסאפ של בייבי אקספרס"
         role="button"
@@ -236,6 +237,7 @@
           href="https://chat.whatsapp.com/EACdDu5zfDoI7pvn8F5fBN"
           target="_blank"
           rel="noopener noreferrer"
+          onclick="fbq('track', 'Lead');"
           class="inline-block mt-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg px-8 py-4 rounded-full transition-colors duration-200"
           aria-label="להצטרפות לקהילת הוואטסאפ"
         >
@@ -426,24 +428,9 @@
 (function () {
   'use strict';
 
-  /* ── Pixel tracking: fire 'Contact' on every WhatsApp CTA click ── */
-  function trackWhatsappContact() {
-    try {
-      if (typeof fbq === 'function') {
-        fbq('track', 'Contact');
-      }
-    } catch (e) {
-      // fbq not loaded – silent fail
-    }
-    // Navigation proceeds naturally (href on <a> tag) – no preventDefault used
-  }
-
-  ['whatsapp-cta', 'whatsapp-cta-about'].forEach(function (id) {
-    const btn = document.getElementById(id);
-    if (btn) {
-      btn.addEventListener('click', trackWhatsappContact);
-    }
-  });
+  /* ── Pixel tracking: 'Lead' event fires via inline onclick="" on each
+       WhatsApp CTA <a> tag (see HTML above) — not handled here, and not
+       triggered on page load. ── */
 
   /* ── Accessibility state ── */
   const ROOT = document.documentElement;
