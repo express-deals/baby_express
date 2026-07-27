@@ -6,8 +6,9 @@
   <title>בייבי אקספרס – קונים חכם לתינוקות</title>
 
   <!-- ================================================
-       הכנה לפיקסלים – הדבק כאן את קוד הפיקסל שלך
-       (Meta Pixel / Google Tag / כל פיקסל אחר)
+       META PIXEL – גרסה מתוקנת
+       שינויים: eventID ייחודי לכל אירוע (מניעת ספירה
+       כפולה דפדפן/שרת), אירוע Lead בלחיצת כפתור בלבד.
        ================================================ -->
   <!-- META PIXEL CODE START -->
   <script>
@@ -19,8 +20,14 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+
+    // מזהה אירוע ייחודי – מאפשר ל-Meta לאחד כפילויות (dedup)
+    function bxEventId(prefix) {
+      return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+    }
+
     fbq('init', '1042992805051567');
-    fbq('track', 'PageView');
+    fbq('track', 'PageView', {}, { eventID: bxEventId('pv') });
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -162,7 +169,6 @@
         href="https://chat.whatsapp.com/EACdDu5zfDoI7pvn8F5fBN"
         target="_blank"
         rel="noopener noreferrer"
-        onclick="fbq('track', 'Lead');"
         class="cta-pulse inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 active:scale-95 text-white font-black text-xl md:text-2xl px-10 py-5 rounded-full transition-transform duration-150 select-none"
         aria-label="להצטרפות לקהילת הוואטסאפ של בייבי אקספרס"
         role="button"
@@ -237,7 +243,6 @@
           href="https://chat.whatsapp.com/EACdDu5zfDoI7pvn8F5fBN"
           target="_blank"
           rel="noopener noreferrer"
-          onclick="fbq('track', 'Lead');"
           class="inline-block mt-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg px-8 py-4 rounded-full transition-colors duration-200"
           aria-label="להצטרפות לקהילת הוואטסאפ"
         >
@@ -428,9 +433,29 @@
 (function () {
   'use strict';
 
-  /* ── Pixel tracking: 'Lead' event fires via inline onclick="" on each
-       WhatsApp CTA <a> tag (see HTML above) — not handled here, and not
-       triggered on page load. ── */
+  /* ── Pixel tracking: fire ONE 'Lead' per WhatsApp CTA click ──
+     כולל eventID ייחודי כדי ש-Meta תאחד כפילויות דפדפן/שרת. */
+  function trackWhatsappLead() {
+    try {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead',
+          { content_name: 'whatsapp_group_join' },
+          { eventID: bxEventId('lead') }
+        );
+      }
+    } catch (e) {
+      // fbq not loaded – silent fail
+    }
+    // Navigation proceeds naturally (href on <a> tag) – no preventDefault used
+  }
+  window.trackWhatsappLead = trackWhatsappLead;
+
+  ['whatsapp-cta', 'whatsapp-cta-about'].forEach(function (id) {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.addEventListener('click', trackWhatsappLead);
+    }
+  });
 
   /* ── Accessibility state ── */
   const ROOT = document.documentElement;
