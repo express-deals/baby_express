@@ -26,7 +26,11 @@
       return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
     }
 
-    fbq('init', '1042992805051567');
+   fbq('init', '1042992805051567', {
+  em: 'email@email.com',   // Values will be hashed automatically by the pixel using SHA-256
+  ph: '1234567890',
+  ...
+});
     fbq('track', 'PageView', {}, { eventID: bxEventId('pv') });
   </script>
   <noscript>
