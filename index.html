@@ -5,46 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>בייבי אקספרס – קונים חכם לתינוקות</title>
 
-  <!-- ================================================
-       META PIXEL – גרסה מתוקנת
-       שינויים: eventID ייחודי לכל אירוע (מניעת ספירה
-       כפולה דפדפן/שרת), אירוע Lead בלחיצת כפתור בלבד.
+    <!-- ================================================
+       TRACKING — נטען רק לאחר הסכמה לקוקיז
+       הפיקסל מאותחל בתוך הפונקציה bxLoadTrackers()
+       שנמצאת בבלוק ה-Cookie Consent בתחתית העמוד.
        ================================================ -->
-  <!-- META PIXEL CODE START -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
     // מזהה אירוע ייחודי – מאפשר ל-Meta לאחד כפילויות (dedup)
     function bxEventId(prefix) {
       return prefix + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
     }
-
-    // תוקן: הוסר אובייקט Advanced Matching עם ערכי דמה שגרם ל-SyntaxError
-    // (ה-"..." הבודד בתוך האובייקט שבר את כל הבלוק, ובעקבות זאת bxEventId
-    //  מעולם לא הוגדר ואירוע ה-Lead לא נורה).
-    fbq('init', '1042992805051567');
-    fbq('track', 'PageView', {}, { eventID: bxEventId('pv') });
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1042992805051567&ev=PageView&noscript=1"
-    />
-  </noscript>
-  <!-- META PIXEL CODE END -->
 
-  <!-- הוסר: בלוק פיקסל כפול שגרם ל-init ול-PageView שניים.
-       הפיקסל מאותחל פעם אחת בלבד בבלוק שמעל. -->
+  <!-- GOOGLE TAG (gtag.js) — נטען גם הוא רק לאחר הסכמה -->
 
-  <!-- GOOGLE TAG (gtag.js) START -->
-  <!-- הדבק כאן את קוד ה-Google Tag שלך -->
-  <!-- GOOGLE TAG CODE END -->
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -111,36 +86,17 @@
 
     /* ── Pulse on CTA button ── */
     @keyframes pulse-btn {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,.55); }
-      50%       { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(15,123,90,.55); }
+      50%       { box-shadow: 0 0 0 14px rgba(15,123,90,0); }
     }
     /* WhatsApp brand button */
-    .wa-btn { background-color: #25D366; }
-    .wa-btn:hover { background-color: #1DA851; }
+    .wa-btn { background-color: #0F7B5A; }
+    .wa-btn:hover { background-color: #0B6E4F; }
     .cta-pulse { animation: pulse-btn 2.2s infinite; }
 
     /* ── Modal ── */
     #a11y-modal { transition: opacity .2s ease; }
     #a11y-modal.hidden { opacity: 0; pointer-events: none; }
-
-    /* ── Hot products cards ── */
-    .hot-card { transition: transform .18s ease, box-shadow .18s ease; }
-    .hot-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(157,23,77,.16); }
-    body.no-animations .hot-card { transition: none !important; }
-    body.no-animations .hot-card:hover { transform: none !important; }
-
-    /* ── AliExpress-red CTA on product cards ── */
-    .ae-btn {
-      background-color: #E62E04;
-      color: #fff;
-      display: block;
-      text-align: center;
-      font-weight: 900;
-      border-radius: 9999px;
-      padding: .6rem 1rem;
-      transition: background-color .15s ease;
-    }
-    .hot-card:hover .ae-btn { background-color: #C22503; }
 
     /* ── Section soft divider ── */
     .wave-divider { line-height: 0; }
@@ -168,9 +124,9 @@
     <!-- Background image (Unsplash placeholder) -->
     <img
       src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=1600&q=80"
-      alt="תינוק מחייך מוקף באהבה וטיפול"
+      alt=""
       class="absolute inset-0 w-full h-full object-cover"
-      aria-hidden="false"
+      aria-hidden="true"
     />
 
     <!-- Overlay -->
@@ -188,7 +144,7 @@
       </h1>
 
       <h2 class="text-lg md:text-xl text-white/90 font-medium mb-10 drop-shadow leading-relaxed max-w-xl mx-auto">
-        הדילים הסודיים מאלי אקספרס מחכים לך בפנים — מוצרים מדורגים גבוה, במחירים של עד חצי מחיר 👇
+        הדילים שאנחנו מאתרות עבורכן באלי אקספרס — מוצרים עם דירוגים גבוהים, במחירים שמשתלמים 👇
       </h2>
 
       <!-- CTA Button -->
@@ -205,10 +161,10 @@
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.118 1.529 5.849L.057 23.886l6.196-1.624A11.927 11.927 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.373l-.36-.214-3.724.977.993-3.63-.235-.374A9.818 9.818 0 1112 21.818z"/>
         </svg>
-        להצטרפות לקהילת הוואטסאפ — לחצו 👈
+        הצטרפות לקהילת הוואטסאפ — חינם 👈
       </a>
 
-      <p class="text-white/60 text-sm mt-5">בלי ספאם ובלי הודעות פרטיות · יוצאים בלחיצה בכל רגע</p>
+      <p class="text-white/90 text-sm mt-5">בלי ספאם ובלי הודעות פרטיות · יוצאים בלחיצה בכל רגע</p>
     </div>
 
     <!-- Scroll hint -->
@@ -230,125 +186,59 @@
 <main>
 
 <!-- ╔══════════════════════════════════════════════╗
-     ║  2. HOT PRODUCTS                             ║
+     ║  2. REAL DEALS / SOCIAL PROOF SECTION        ║
      ╚══════════════════════════════════════════════╝ -->
-<section aria-labelledby="hot-heading" class="py-16 px-6 bg-[#fffbfe]">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 id="hot-heading" class="text-3xl md:text-4xl font-black text-pink-700 mb-3">
-      🔥המוצרים החמים🔥
+<section aria-labelledby="deals-heading" class="py-16 px-6 bg-[#fffbfe]">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 id="deals-heading" class="text-3xl md:text-4xl font-black text-pink-700 mb-3">
+      🍼 דילים אמיתיים שעלו בקבוצה השבוע
     </h2>
     <p class="text-gray-600 text-base md:text-lg mb-10 max-w-2xl mx-auto">
-      המוצרים שהכי נמכרים בקהילה שלנו — לחצו על מוצר כדי לראות אותו באלי אקספרס
+      אמהות מצטרפות אלינו כל יום — הנה כמה מהדילים שעלו בקבוצה לאחרונה
     </p>
 
-    <div id="hot-grid" class="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 text-right">
 
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c4PpwEh7" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="diaper_bag_soboba" aria-label="תיק החתלה Soboba רב-תא – מעבר לעמוד המוצר">
-        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S9aae98b269bc4bfeb88c9dd0d57106ddC.jpg" alt="תיק גב להחתלה Soboba" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🎒 תיק החתלה Soboba רב-תא</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
+    <div role="note" class="max-w-3xl mx-auto mb-8 px-4 py-3 bg-amber-50 border border-amber-300 rounded-2xl text-sm text-amber-900 leading-relaxed text-right">
+      <strong>גילוי נאות:</strong> הקישורים באתר הם קישורי שותפים. רכישה דרכם עשויה לזכות אותנו בעמלה מאלי אקספרס, <strong>ללא עלות נוספת עבורך</strong>. איננו מוכרים את המוצרים ואיננו צד לעסקה — <a href="/terms" class="underline font-bold">תנאי שימוש מלאים</a>.
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
 
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c3sMwioP" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="white_noise_machine" aria-label="מכונת רעש לבן ניידת – מעבר לעמוד המוצר">
-        <img src="https://ae01.alicdn.com/kf/S0affb64e8f41420db6a209f328e52bb5R.jpg" alt="מכונת רעש לבן ניידת להרגעת תינוקות" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🎵 מכונת רעש לבן ניידת</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
+      <!-- Deal 1: play mat -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col">
+        <img src="img/deal-playmat.jpg" alt="מזרן משחק לתינוק עם קשת צעצועים וכדורים" class="w-full h-48 object-contain bg-white p-2" loading="lazy" />
+        <div class="p-4 flex flex-col gap-1 flex-1">
+          <h3 class="font-bold text-gray-800 text-sm leading-snug">מזרן משחק לתינוק עם קשת צעצועים</h3>
+          <p class="text-2xl font-black text-red-600">₪67 <span class="text-sm text-gray-500 font-normal line-through">₪163</span></p>
+          <p class="text-xs text-gray-500 mt-auto">⭐ 4.9 · יותר מ-700 נמכרו</p>
         </div>
-      </a>
+      </div>
 
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c31KM94V" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="baby_monitor_5in" aria-label="מוניטור וידאו 5 אינץ עם ראיית לילה – מעבר לעמוד המוצר">
-        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S9e3eb1cd6a8d4d71aa06654bd5b4c759P.png" alt="מוניטור וידאו לתינוק 5 אינץ עם ראיית לילה" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">👶 מוניטור וידאו 5 אינץ עם ראיית לילה</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
+      <!-- Deal 2: baby monitor -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col">
+        <img src="img/deal-monitor.jpg" alt="מוניטור וידאו לתינוק TakTark עם ראיית לילה" class="w-full h-48 object-contain bg-white p-2" loading="lazy" />
+        <div class="p-4 flex flex-col gap-1 flex-1">
+          <h3 class="font-bold text-gray-800 text-sm leading-snug">מוניטור וידאו לתינוק עם ראיית לילה</h3>
+          <p class="text-2xl font-black text-red-600">₪122 <span class="text-sm text-gray-500 font-normal line-through">₪253</span></p>
+          <p class="text-xs text-gray-500 mt-auto">⭐ 4.9 · יותר מ-5,000 נמכרו</p>
         </div>
-      </a>
+      </div>
 
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c3tz3YVZ" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="playmat_0_36" aria-label="מזרן פעילות משולב 0-36 חודשים – מעבר לעמוד המוצר">
-        <img src="https://ae01.alicdn.com/kf/S49351e965be14731a94877f266f0dbaf5.jpg" alt="מזרן פעילות משולב לתינוקות מלידה ועד גיל 3" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🧸 מזרן פעילות משולב 0-36 חודשים</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
+      <!-- Deal 3: formula kettle -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col">
+        <img src="img/deal-kettle.jpg" alt="קומקום חכם להכנת פורמולה עם שמירת חום" class="w-full h-48 object-contain bg-white p-2" loading="lazy" />
+        <div class="p-4 flex flex-col gap-1 flex-1">
+          <h3 class="font-bold text-gray-800 text-sm leading-snug">קומקום חכם להכנת פורמולה (1.2 ליטר)</h3>
+          <p class="text-2xl font-black text-red-600">₪128 <span class="text-sm text-gray-500 font-normal line-through">₪404</span></p>
+          <p class="text-xs text-gray-500 mt-auto">⭐ 4.6 · יותר מ-3,000 נמכרו</p>
         </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c2wXFkSl" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="carrier_babybjorn" aria-label="מנשא BabyBjorn 3D Mesh ארגונומי – מעבר לעמוד המוצר">
-        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S90357ecb39cd4eefa36452c19c780d28A.jpg" alt="מנשא תינוקות BabyBjorn 3D Mesh ארגונומי" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🍼 מנשא BabyBjorn 3D Mesh ארגונומי</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c4O6arvJ" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="smart_kettle_1_2l" aria-label="קומקום חכם לחימום חלב 1.2L – מעבר לעמוד המוצר">
-        <img src="https://ae01.alicdn.com/kf/S8ba50b1c54294ec9942386281faa08ecp.jpg" alt="קומקום חכם לחימום חלב תינוקות 1.2 ליטר" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🍼 קומקום חכם לחימום חלב 1.2L</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c331Wuop" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="rocker_angku" aria-label="נדנדת תינוק AnGku מתקפלת – מעבר לעמוד המוצר">
-        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S630dcb959365456b9e626ae3a667748al.jpg" alt="נדנדת תינוק AnGku מתקפלת עם צעצועים" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🪑 נדנדת תינוק AnGku מתקפלת</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c4lm0Dip" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="bottle_warmer_usb" aria-label="מחמם בקבוקים נייד USB – מעבר לעמוד המוצר">
-        <img src="https://ae01.alicdn.com/kf/S3f6e4fbce3984b2aa42cae9bbe50c38dg.jpg" alt="מחמם בקבוקים נייד USB לתינוקות" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🚗 מחמם בקבוקים נייד USB</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c3Gt5s9T" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="breast_pump_homefish" aria-label="משאבת חלב לבישה HOMEFISH – מעבר לעמוד המוצר">
-        <img src="https://ae-pic-a1.aliexpress-media.com/kf/S9d67fcad1a354853b90433212f97ba73Y.png" alt="משאבת חלב חשמלית לבישה HOMEFISH MY-375" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🤱 משאבת חלב לבישה HOMEFISH</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
-
-      <a class="hot-card bg-white rounded-2xl shadow-lg overflow-hidden border border-pink-100 flex flex-col focus:outline-none focus:ring-4 focus:ring-pink-300"
-         href="https://s.click.aliexpress.com/e/_c3oUFzSn" target="_blank" rel="noopener noreferrer sponsored"
-         data-product="playmat_edu_frame" aria-label="מזרן משחק חינוכי עם מסגרת תלייה – מעבר לעמוד המוצר">
-        <img src="https://ae01.alicdn.com/kf/H69af5a660ecb4a5b90cf8af95741ee3ap.jpg" alt="מזרן משחק חינוכי עם מסגרת תלייה לתינוקות" class="w-full h-40 md:h-48 object-contain bg-white p-2" loading="lazy" />
-        <div class="p-3 md:p-4 flex flex-col gap-3 flex-1">
-          <h3 class="font-bold text-gray-800 text-xs md:text-sm leading-snug flex-1">🎪 מזרן משחק חינוכי עם מסגרת תלייה</h3>
-          <span class="ae-btn text-sm md:text-base">לחץ כאן</span>
-        </div>
-      </a>
+      </div>
 
     </div>
 
-    <p class="text-gray-500 text-xs mt-6">הקישורים הם קישורי שותפים · המחירים והזמינות מתעדכנים באתר אלי אקספרס</p>
+    <p class="text-gray-600 text-xs mt-4">המחירים, הדירוגים ונתוני המכירות לקוחים מעמוד המוצר באלי אקספרס ונכונים ליום הצילום. הם עשויים להשתנות בכל עת.</p>
 
     <a
-      id="whatsapp-cta-hot"
+      id="whatsapp-cta-deals"
       href="https://chat.whatsapp.com/EACdDu5zfDoI7pvn8F5fBN"
       target="_blank"
       rel="noopener noreferrer"
@@ -359,7 +249,7 @@
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
         <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.118 1.529 5.849L.057 23.886l6.196-1.624A11.927 11.927 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.373l-.36-.214-3.724.977.993-3.63-.235-.374A9.818 9.818 0 1112 21.818z"/>
       </svg>
-      רוצה עוד דילים כאלה כל יום? לקהילה — לחצו 👈
+      רוצה דילים כאלה? לקהילת הוואטסאפ — חינם 👈
     </a>
   </div>
 </section>
@@ -390,10 +280,10 @@
           💖 תכירו את בייבי אקספרס – הקהילה שמביאה לכן את השילוב המושלם בין איכות לחיסכון.
         </p>
         <p class="text-gray-700 text-base md:text-lg leading-relaxed">
-          🛒 אנחנו כאן כדי למצוא עבורכן את הדילים הכי שווים ב-Ali Express. כל מוצר, צעצוע או בגד עובר סינון המבוסס על המלצות ודירוגים גבוהים בלבד.
+          🛒 אנחנו כאן כדי למצוא עבורכן את הדילים הכי שווים ב-Ali Express. כל מוצר, צעצוע או בגד נבחר על בסיס הדירוגים והביקורות שמופיעים בעמוד המוצר.
         </p>
         <p class="text-gray-700 text-base md:text-lg leading-relaxed">
-          ✅ בשבילכן זה אומר ראש שקט, קנייה בטוחה ומקסימום תמורה למחיר.
+          ✅ בשבילכן זה אומר פחות זמן חיפוש, ובחירה מושכלת יותר.
         </p>
         <p class="text-gray-700 text-base md:text-lg leading-relaxed">
           🥰 זו קהילה של אמהות שאוהבות לפנק את הבייבי שלהן, מבלי לקרוע את הכיס.
@@ -414,9 +304,9 @@
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
             <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.557 4.118 1.529 5.849L.057 23.886l6.196-1.624A11.927 11.927 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.373l-.36-.214-3.724.977.993-3.63-.235-.374A9.818 9.818 0 1112 21.818z"/>
           </svg>
-          הצטרפות לקהילת הוואטסאפ — לחצו 👈
+          הצטרפות לקהילת הוואטסאפ — חינם 👈
         </a>
-        <p class="text-gray-400 text-xs">בלי ספאם ובלי הודעות פרטיות · יוצאים בלחיצה בכל רגע</p>
+        <p class="text-gray-600 text-xs">בלי ספאם ובלי הודעות פרטיות · יוצאים בלחיצה בכל רגע</p>
       </div>
 
     </div>
@@ -429,12 +319,12 @@
     <div class="space-y-2">
       <div class="text-4xl" aria-hidden="true">🔍</div>
       <h3 class="font-bold text-pink-700 text-lg">סינון קפדני</h3>
-      <p class="text-gray-600 text-sm">רק מוצרים עם דירוגים גבוהים ומאות ביקורות חיוביות</p>
+      <p class="text-gray-600 text-sm">מוצרים שנבחרו לפי דירוג גבוה וביקורות חיוביות</p>
     </div>
     <div class="space-y-2">
       <div class="text-4xl" aria-hidden="true">💰</div>
       <h3 class="font-bold text-pink-700 text-lg">מחירים שמפתיעים</h3>
-      <p class="text-gray-600 text-sm">דילים בלעדיים שתמצאו רק אצלנו, לפני כולם</p>
+      <p class="text-gray-600 text-sm">אנחנו מאתרות את ההנחות ומרכזות אותן במקום אחד</p>
     </div>
     <div class="space-y-2">
       <div class="text-4xl" aria-hidden="true">👩‍👧</div>
@@ -464,6 +354,11 @@
   >
     הצהרת נגישות
   </button>
+  <nav aria-label="קישורים משפטיים" class="mt-5 pt-5 border-t border-pink-800 flex flex-wrap gap-x-5 gap-y-2 justify-center text-sm">
+    <a href="/privacy" class="text-pink-100 underline hover:text-white">מדיניות פרטיות</a>
+    <a href="/terms"   class="text-pink-100 underline hover:text-white">תנאי שימוש</a>
+    <a href="/cookies" class="text-pink-100 underline hover:text-white">מדיניות Cookie</a>
+  </nav>
 </footer>
 
 <!-- ╔══════════════════════════════════════════════╗
@@ -619,40 +514,11 @@
   }
   window.trackWhatsappLead = trackWhatsappLead;
 
-  ['whatsapp-cta', 'whatsapp-cta-about', 'whatsapp-cta-hot'].forEach(function (id) {
+  ['whatsapp-cta', 'whatsapp-cta-about', 'whatsapp-cta-deals'].forEach(function (id) {
     const btn = document.getElementById(id);
     if (btn) {
       btn.addEventListener('click', trackWhatsappLead);
     }
-  });
-
-  /* ── Hot products: random order on every page load ── */
-  (function shuffleHotProducts() {
-    const grid = document.getElementById('hot-grid');
-    if (!grid) return;
-    const cards = Array.prototype.slice.call(grid.children);
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const tmp = cards[i]; cards[i] = cards[j]; cards[j] = tmp;
-    }
-    const frag = document.createDocumentFragment();
-    cards.forEach(function (el) { frag.appendChild(el); });
-    grid.appendChild(frag);
-  }());
-
-  /* ── Hot products: track clicks as a custom event ──
-     אירוע נפרד כדי לא לזהם את אירוע ה-Lead שהקמפיין ממטב עליו. */
-  document.querySelectorAll('#hot-grid a[data-product]').forEach(function (link) {
-    link.addEventListener('click', function () {
-      try {
-        if (typeof fbq === 'function') {
-          fbq('trackCustom', 'ProductClick',
-            { content_name: link.getAttribute('data-product'), source: 'landing_hot_products' },
-            { eventID: bxEventId('pc') }
-          );
-        }
-      } catch (e) { /* silent */ }
-    });
   });
 
   /* ── Accessibility state ── */
@@ -837,6 +703,79 @@
   });
 
 }());
+</script>
+
+
+<!-- ╔══════════════════════════════════════════════╗
+     ║  COOKIE CONSENT — חוסם מעקב עד אישור        ║
+     ╚══════════════════════════════════════════════╝ -->
+<div id="cookie-banner" role="region" aria-live="polite" aria-label="הודעת קובצי Cookie"
+     class="hidden fixed bottom-0 inset-x-0 z-50 bg-white border-t-4 border-pink-700 shadow-2xl px-5 py-4">
+  <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-4">
+    <p class="text-sm text-gray-700 flex-1 min-w-[240px] leading-relaxed m-0">
+      🍪 אנחנו משתמשים בקובצי Cookie כדי לשפר את האתר ולמדוד ביצועי פרסום.
+      <a href="/cookies" class="text-pink-700 underline font-bold">פרטים מלאים</a>
+    </p>
+    <div class="flex gap-2 flex-wrap">
+      <button id="cc-reject" type="button"
+              class="bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 font-bold px-5 py-2.5 rounded-xl text-sm transition-colors focus:outline-none focus:ring-4 focus:ring-gray-300">
+        דחייה
+      </button>
+      <button id="cc-accept" type="button"
+              class="bg-pink-700 hover:bg-pink-800 text-white font-bold px-7 py-2.5 rounded-xl text-sm transition-colors focus:outline-none focus:ring-4 focus:ring-pink-300">
+        אישור
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'be_cookie_consent';
+  var banner = document.getElementById('cookie-banner');
+
+  function read()  { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function save(v) { try { localStorage.setItem(KEY, v); }   catch (e) {} }
+
+  // טוען Meta Pixel + GA4 — נקרא אך ורק לאחר אישור המשתמש
+  window.bxLoadTrackers = function () {
+    if (window.__bxTrackersLoaded) return;
+    window.__bxTrackersLoaded = true;
+
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1042992805051567');
+    fbq('track', 'PageView', {}, { eventID: bxEventId('pv') });
+
+    /* ---- Google Analytics 4 — בטל את ההערה והחלף את המזהה ----
+    var g = document.createElement('script'); g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date()); gtag('config', 'G-XXXXXXXXXX');
+    */
+  };
+
+  var choice = read();
+  if (choice === 'accepted') {
+    window.bxLoadTrackers();
+  } else if (choice !== 'rejected') {
+    banner.classList.remove('hidden');
+  }
+
+  document.getElementById('cc-accept').addEventListener('click', function () {
+    save('accepted'); banner.classList.add('hidden'); window.bxLoadTrackers();
+  });
+  document.getElementById('cc-reject').addEventListener('click', function () {
+    save('rejected'); banner.classList.add('hidden');
+  });
+})();
 </script>
 
 </body>
