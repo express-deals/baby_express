@@ -126,6 +126,24 @@
       transition: background-color .15s ease;
     }
     .hot-card:hover .ae-btn { background-color: #A31D00; }
+
+    /* ── כפתור משני: מעבר לקטלוג המוצרים ── */
+    .products-btn {
+      background-color: #ffffff;
+      color: #9d174d;                 /* pink-800 · 7.88:1 על לבן */
+      border: 2px solid #ffffff;
+      box-shadow: 0 6px 20px rgba(157,23,77,.22);
+      transition: background-color .18s ease, color .18s ease, transform .15s ease;
+    }
+    .products-btn:hover {
+      background-color: #9d174d;
+      color: #ffffff;                 /* 7.88:1 גם במצב הפוך */
+      transform: translateY(-2px);
+    }
+    .products-btn:active { transform: scale(.97); }
+    body.no-animations .products-btn { transition: none !important; }
+    body.no-animations .products-btn:hover { transform: none !important; }
+    body.high-contrast .products-btn { background:#fff; color:#000; border-color:#000; }
   </style>
 </head>
 
@@ -188,6 +206,21 @@
         </svg>
         להצטרפות לקהילת הוואטסאפ — לחצו 👈
       </a>
+
+      <!-- כפתור משני: מעבר לקטלוג המוצרים -->
+      <div class="mt-5">
+        <a
+          id="products-cta"
+          href="https://baby-express.co.il/products"
+          class="products-btn inline-flex items-center justify-center gap-2 font-black text-sm sm:text-base md:text-lg px-6 sm:px-8 py-4 rounded-full select-none leading-snug max-w-[92vw] text-center focus:outline-none focus:ring-4 focus:ring-pink-300"
+          aria-label="מעבר לעמוד כל המוצרים והדילים שעלו לקבוצה"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17M17 17a2 2 0 100 4 2 2 0 000-4zM9 19a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+          לצפייה בכל המוצרים והדילים שעלו לקבוצה 🛍️
+        </a>
+      </div>
 
       <p class="text-white/90 text-sm mt-5">בלי ספאם ובלי הודעות פרטיות · יוצאים בלחיצה בכל רגע</p>
     </div>
